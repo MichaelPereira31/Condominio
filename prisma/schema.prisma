@@ -1,0 +1,34 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Lotes {
+  id       String    @id @default(uuid())
+  nome     String
+  ativo    String
+  criadoEm DateTime  @default(now()) @map("criado_em")
+  Tickets  Tickets[]
+
+  @@map("lotes")
+}
+
+model Tickets {
+  id             String   @id @default(uuid())
+  nomeSacado     String   @map("nome_sacado")
+  idLote         Lotes    @relation(fields: [lotesId], references: [id])
+  valor          Decimal
+  linhaDigitavel String   @map("linha_digitavel")
+  ativo          Boolean
+  criadoEm       DateTime @map("criado_em")
+  lotesId        String
+
+  @@map("tickets")
+}
