@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "lotes" (
-    "id" TEXT NOT NULL,
+    "id" SERIAL NOT NULL,
     "nome" TEXT NOT NULL,
     "ativo" TEXT NOT NULL,
     "criado_em" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -10,13 +10,13 @@ CREATE TABLE "lotes" (
 
 -- CreateTable
 CREATE TABLE "tickets" (
-    "id" TEXT NOT NULL,
+    "id" SERIAL NOT NULL,
     "nome_sacado" TEXT NOT NULL,
     "valor" DECIMAL(65,30) NOT NULL,
     "linha_digitavel" TEXT NOT NULL,
     "ativo" BOOLEAN NOT NULL,
     "criado_em" TIMESTAMP(3) NOT NULL,
-    "lotesId" TEXT NOT NULL,
+    "lotesId" INTEGER NOT NULL,
 
     CONSTRAINT "tickets_pkey" PRIMARY KEY ("id")
 );
