@@ -10,25 +10,28 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Lotes {
-  id       Int       @id @default(autoincrement())
-  nome     String
-  ativo    String
-  criadoEm DateTime  @default(now()) @map("criado_em")
-  Tickets  Tickets[]
+model Batch {
+  id         Int       @id @default(autoincrement())
+  name       String    @unique
+  active     Boolean
+  externalId Int       @unique @map("external_id")
+  createdAt  DateTime  @default(now()) @map("created_at")
+  updatedAt  DateTime  @updatedAt @map("updated_at")
+  Ticket    Ticket[]
 
-  @@map("lotes")
+  @@map("batch")
 }
 
-model Tickets {
-  id             Int      @id @default(autoincrement())
-  nomeSacado     String   @map("nome_sacado")
-  idLote         Lotes    @relation(fields: [lotesId], references: [id])
-  valor          Decimal
-  linhaDigitavel String   @map("linha_digitavel")
-  ativo          Boolean
-  criadoEm       DateTime @map("criado_em")
-  lotesId        Int
+model Ticket {
+  id            Int      @id @default(autoincrement())
+  nameWithdrawn String   @map("name_withdrawn")
+  value         Decimal
+  digitableLine String   @map("digitable_line")
+  active         Boolean
+  externalIdLot Batch     @relation(fields: [batchId], references: [externalId])
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+  batchId        Int
 
-  @@map("tickets")
+  @@map("ticket")
 }
