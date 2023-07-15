@@ -12,7 +12,7 @@ export class FindReportUseCase {
   constructor(
     @inject('TicketRepository')
     private readonly ticketRepository: ITicketRepository,
-  ) {}
+  ) { }
   async execute(_report: string) {
     const tickets = await this.ticketRepository.findMany();
 
@@ -22,9 +22,10 @@ export class FindReportUseCase {
 
     const pathProject = path.resolve(__dirname, '../../../../../tmp/uploads');
 
-    let pdf: string = '';
+    let pdf: string =
+      'id  | nome_sacado  | id_lote | valor   | linha_digitavel \n';
     tickets.map(ticket => {
-      pdf += `Nome: ${ticket.nameWithdrawn}, valor: ${ticket.value} \n`;
+      pdf += `${ticket.id}   ${ticket.nameWithdrawn}         ${ticket.batchId}       ${ticket.value}   ${ticket.digitableLine}\n`;
     });
 
     fs.writeFileSync(`${pathProject}/report.pdf`, pdf);
@@ -33,7 +34,7 @@ export class FindReportUseCase {
 
     const base64 = dataPdf.toString('base64');
 
-    FileRemove(`${pathProject}/report.pdf`);
+    // FileRemove(`${pathProject}/report.pdf`);
 
     return base64;
   }
