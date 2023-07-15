@@ -9,6 +9,7 @@
     "dev": "tsnd -r tsconfig-paths/register --exit-child --transpile-only --ignore-watch node_modules --respawn src/shared/infra/http/server.ts",
     "lint:staged": "lint-staged",
     "lint": "eslint . --fix",
+    "build": "tsc && tsc-alias",
     "prepare": "husky install"
   },
   "devDependencies": {
@@ -19,6 +20,7 @@
     "@types/express": "^4.17.17",
     "@types/multer": "^1.4.7",
     "@types/node": "^20.4.1",
+    "@types/pdfjs-dist": "^2.10.378",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "commitizen": "^4.3.0",

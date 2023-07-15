@@ -20,6 +20,11 @@
     "prettier"
   ],
   "rules": {
+    "no-empty-function": "off",
+    "consistent-return": "off",
+    "no-plusplus": "off",
+    "no-await-in-loop":"off",
+    "array-callback-return":"off",
     "import/no-mutable-exports": "off",
     "no-useless-constructor": "off",
     "lines-between-class-members": "off",

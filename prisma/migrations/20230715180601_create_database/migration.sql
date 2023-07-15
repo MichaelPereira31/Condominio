@@ -14,7 +14,7 @@ CREATE TABLE "batch" (
 CREATE TABLE "ticket" (
     "id" SERIAL NOT NULL,
     "name_withdrawn" TEXT NOT NULL,
-    "value" DECIMAL(65,30) NOT NULL,
+    "value" DOUBLE PRECISION NOT NULL,
     "digitable_line" TEXT NOT NULL,
     "active" BOOLEAN NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,

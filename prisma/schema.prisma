@@ -11,13 +11,13 @@ datasource db {
 }
 
 model Batch {
-  id         Int       @id @default(autoincrement())
-  name       String    @unique
+  id         Int      @id @default(autoincrement())
+  name       String   @unique
   active     Boolean
-  externalId Int       @unique @map("external_id")
-  createdAt  DateTime  @default(now()) @map("created_at")
-  updatedAt  DateTime  @updatedAt @map("updated_at")
-  Ticket    Ticket[]
+  externalId Int      @unique @map("external_id")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+  Ticket     Ticket[]
 
   @@map("batch")
 }
@@ -25,13 +25,13 @@ model Batch {
 model Ticket {
   id            Int      @id @default(autoincrement())
   nameWithdrawn String   @map("name_withdrawn")
-  value         Decimal
+  value         Float
   digitableLine String   @map("digitable_line")
-  active         Boolean
-  externalIdLot Batch     @relation(fields: [batchId], references: [externalId])
+  active        Boolean
+  externalIdLot Batch    @relation(fields: [batchId], references: [externalId])
   createdAt     DateTime @default(now()) @map("created_at")
   updatedAt     DateTime @updatedAt @map("updated_at")
-  batchId        Int
+  batchId       Int
 
   @@map("ticket")
 }
