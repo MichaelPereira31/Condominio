@@ -1,7 +1,6 @@
-/* eslint-disable no-plusplus */
-/* eslint-disable no-await-in-loop */
-import fs from 'fs';
 import * as pdfjsLib from 'pdfjs-dist/build/pdf';
+
+import { FileRemove } from './fileRemover';
 
 export async function ReadPDF(filePath: string) {
   const pdf = await pdfjsLib.getDocument({ url: filePath }).promise;
@@ -19,6 +18,6 @@ export async function ReadPDF(filePath: string) {
       }),
     );
   }
-  fs.unlinkSync(filePath);
+  FileRemove(filePath);
   return textPDF;
 }

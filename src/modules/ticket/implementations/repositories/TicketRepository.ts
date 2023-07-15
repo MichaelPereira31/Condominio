@@ -7,7 +7,19 @@ import { Context } from '@shared/infra/database/context';
 import { ITicketRepository } from '../ITicketRepository';
 
 export class TicketRepository implements ITicketRepository {
-  constructor(private readonly ctx: Context = { prisma: prismaClient }) { }
+  constructor(private readonly ctx: Context = { prisma: prismaClient }) {}
+  async findAll(condition: object): Promise<Ticket[]> {
+    const ticket = await this.ctx.prisma.ticket.findMany({
+      where: condition,
+    });
+    return ticket;
+  }
+
+  async findMany(): Promise<Ticket[]> {
+    const ticket = await this.ctx.prisma.ticket.findMany();
+    return ticket;
+  }
+
   async findByName(name: string): Promise<Ticket | null> {
     const ticket = await this.ctx.prisma.ticket.findFirst({
       where: { nameWithdrawn: { contains: name } },
