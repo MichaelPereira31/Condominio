@@ -15,4 +15,4 @@ app.use(express.json());
 app.use(routes);
 app.use(getErrors);
 
-app.listen(3000, () => logger.info('Server is running on port 3333'));
+app.listen(3333, () => logger.info('Server is running on port 3333'));

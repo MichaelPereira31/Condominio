@@ -13,7 +13,7 @@ export class SplitPdsUseCase {
   constructor(
     @inject('TicketRepository')
     private readonly ticketRepository: ITicketRepository,
-  ) { }
+  ) {}
   async execute(file?: Express.Multer.File) {
     if (!file) throw new AppError('error file', 400);
 
